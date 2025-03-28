@@ -5,6 +5,7 @@ import com.example.blank.model.TokenResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.asn1.pkcs.RSAPrivateKey;
@@ -18,7 +19,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Slf4j
 @PropertySource(value = "/application.properties")
 public class IntrospectService {
 
@@ -97,7 +98,7 @@ public class IntrospectService {
 
         // Выполнение POST-запроса
         TokenResponse response = restTemplate.postForObject(introspectionUrl, request, TokenResponse.class);
-
+        log.info(response.toString());
         // Возврат результата
         return response;
     }
@@ -123,10 +124,11 @@ public class IntrospectService {
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(data, headers);
 
         // Выполнение POST-запроса
-        TokenResponse response = restTemplate.postForObject(introspectionUrl, request, TokenResponse.class);
+        TokenResponse tokenResponse = restTemplate.postForObject(introspectionUrl, request, TokenResponse.class);
+        log.info(tokenResponse.toString());
 
         // Возврат результата
-        return response;
+        return tokenResponse;
     }
 
     private String genAppAuthJWT() {

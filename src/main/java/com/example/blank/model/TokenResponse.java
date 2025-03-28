@@ -1,8 +1,13 @@
 package com.example.blank.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class TokenResponse {
     @JsonProperty("active")
     private boolean active;
@@ -39,71 +44,26 @@ public class TokenResponse {
     @JsonProperty("username")
     private String username;
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public List<String> getAud() {
-        return aud;
-    }
-
-    public long getExp() {
-        return exp;
-    }
-
-    public long getIat() {
-        return iat;
-    }
-
-    public String getIss() {
-        return iss;
-    }
-
-    public String getJti() {
-        return jti;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public long getNbf() {
-        return nbf;
-    }
-
-    public String getPreferredUsername() {
-        return preferredUsername;
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public String getSub() {
-        return sub;
-    }
-
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public long getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public String getUserResourceOwnerId() {
-        return userResourceOwnerId;
-    }
-
-    public String getUserResourceOwnerName() {
-        return userResourceOwnerName;
-    }
-
-    public String getUserResourceOwnerPrimaryDomain() {
-        return userResourceOwnerPrimaryDomain;
-    }
-
-    public String getUsername() {
-        return username;
+    @Override
+    public String toString() {
+        return "TokenResponse{" +
+                "active=" + active +
+                ", aud=" + aud +
+                ", exp=" + exp +
+                ", iat=" + iat +
+                ", iss='" + iss + '\'' +
+                ", jti='" + jti + '\'' +
+                ", name='" + name + '\'' +
+                ", nbf=" + nbf +
+                ", preferredUsername='" + preferredUsername + '\'' +
+                ", scope='" + scope + '\'' +
+                ", sub='" + sub + '\'' +
+                ", tokenType='" + tokenType + '\'' +
+                ", updatedAt=" + updatedAt +
+                ", userResourceOwnerId='" + userResourceOwnerId + '\'' +
+                ", userResourceOwnerName='" + userResourceOwnerName + '\'' +
+                ", userResourceOwnerPrimaryDomain='" + userResourceOwnerPrimaryDomain + '\'' +
+                ", username='" + username + '\'' +
+                '}';
     }
 }
